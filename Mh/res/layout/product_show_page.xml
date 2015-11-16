@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+     <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#78b651"
+        
+        >
+        
+        
+        <ImageView 
+            android:id="@+id/product_show_page_back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/home_tab_arrow"
+            android:src="@drawable/icon_back_ontouch"
+            android:layout_marginLeft="5dip"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="农特产品" 
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            />
+        
+    </RelativeLayout>
+    
+     
+      
+    <TextView 
+        android:id="@+id/product_show_page_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="产品名称"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:padding="10dip"
+        />
+    
+    <ImageView 
+        android:id="@+id/product_show_page_product_image_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/product_show_page_image"
+        android:layout_gravity="center_horizontal"
+        />
+    
+    
+    <TextView 
+        android:id="@+id/product_show_page_detail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:textSize="14sp"
+        android:textColor="#555555"
+        android:text="产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍
+        产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
+        />
+    
+    
+    
+    
+
+</LinearLayout>
+
+
+
+
+
+</ScrollView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="45dip"
+    android:orientation="vertical" >
+    
+     <ImageView 
+        android:id="@+id/main_tab_indicator_2_iamge_view"
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+         android:scaleType="fitXY"
+        android:src="@drawable/tab_down_1_select"
+        />
+    
+
+</LinearLayout>

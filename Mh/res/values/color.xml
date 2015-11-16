@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="home_tab_select">#78b651</color>
+    <color name="home_tab_unselect">#619442</color>
+    <color name="but_unclickable">#E8E8E7</color>
+    
+    <color name="transparent_background">#80000000</color>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="#78b651" >
+
+            <ImageButton
+                android:id="@+id/setting_page_back_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dip"
+                android:background="@drawable/home_tab_arrow"
+                android:src="@drawable/icon_back_ontouch" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="设置"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/setting_page_open_service"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:padding="10dip"
+        android:textSize="16sp"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/do_work_do_btn"
+        android:layout_gravity="center_horizontal"
+        android:text="打开推送服务" />
+    
+    <Button
+        android:id="@+id/setting_page_close_service"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:padding="10dip"
+        android:textSize="16sp"
+        android:layout_marginTop="15dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/do_work_do_btn"
+        android:layout_gravity="center_horizontal"
+        android:text="关闭推送服务" />
+
+</LinearLayout>

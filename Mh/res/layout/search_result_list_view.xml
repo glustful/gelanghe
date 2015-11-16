@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff" >
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#78b651" >
+
+        <ImageButton
+            android:id="@+id/search_back_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/home_tab_arrow"
+            android:src="@drawable/icon_back_ontouch" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="搜索"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#78b651"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        android:padding="10dip" >
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <requestFocus />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/search_result_search_et"
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:background="#FFFFFF"
+                android:hint="请输入搜素内容" />
+
+            <ImageButton
+                android:id="@+id/search_result_search_but"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:background="@drawable/search_btn" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/search_result_login_but"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="right"
+                android:background="#e7eae5"
+                android:text="登陆" />
+        </LinearLayout>
+    </LinearLayout>
+
+    
+        <ListView 
+        android:id="@+id/search_result_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@null"
+        android:dividerHeight="1dip"
+        android:divider="#E8E8E7"
+        ></ListView>
+    
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff" >
+
+    <TextView
+        android:id="@+id/my_path"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:padding="5dp"
+        android:text="当前路径"
+        android:textColor="#000"
+        android:textSize="18sp" >
+    </TextView>
+
+    <ListView
+        android:id="@+id/file_select_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_cancle"
+        android:layout_below="@+id/my_path"
+        android:cacheColorHint="@null"
+        android:divider="#E8E8E7"
+        android:dividerHeight="1dip" >
+    </ListView>
+
+    <Button
+        android:id="@+id/button_cancle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dip"
+        android:textSize="16sp"
+        android:layout_marginTop="5dip"
+        android:background="@drawable/do_work_do_btn"
+        android:textColor="#ffffff"
+        android:text="取消" />
+
+</RelativeLayout>

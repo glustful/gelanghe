@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/list_btn_on"
+    android:padding="10dip" >
+    
+       
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/blue_start"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="5dip"
+        />
+    
+    <TextView 
+        android:id="@+id/open_job_list_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="标题标题标题标题标题"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        />
+    
+
+</LinearLayout>
