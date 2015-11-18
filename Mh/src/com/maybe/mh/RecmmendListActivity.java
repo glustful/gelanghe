@@ -1,5 +1,6 @@
 package com.maybe.mh;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.DateUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.maybe.mh.pojo.ArticleDetail;
 import com.maybe.mh.sqlite.ArticleDetailDao;
 import com.maybe.mh.sqlite.DatabaseManager;
@@ -27,12 +33,13 @@ import com.maybe.mh.util.ShowToast;
 
 public class RecmmendListActivity extends MyActivity {
 
-	private List<ArticleDetail> dataList;
+	private List<ArticleDetail> dataList = new ArrayList<ArticleDetail>();
 
 	private ListView recommendLV;
-
+	private PullToRefreshListView refreshLV;
+	private int page = 1;
 	private Context context;
-	
+	private RecommendListAdapter adapter;
 
 	@SuppressLint("HandlerLeak")
 	private class MyHandle extends Handler {
@@ -47,10 +54,17 @@ public class RecmmendListActivity extends MyActivity {
 				{
 					groupId = MyApplication.getMyApplication().getLoginUser().getGroup_id();
 				}
-				dataList = new ArticleDetailDao().getAllArticleDetailByCategoryAndGroupId("tuijian", groupId);
+				List<ArticleDetail> result = new ArticleDetailDao().getAllArticleDetailByCategoryAndGroupId("tuijian", groupId,page,null);
+				refreshLV.onRefreshComplete();
+				if(result==null || result.size()<10){
+					refreshLV.setMode(Mode.DISABLED);
+				}else{
+					page++;
+				}
+				dataList.addAll(result);
 				DatabaseManager.getInstance().closeDatabase();
-				recommendLV.setAdapter(new RecommendListAdapter());
-
+				adapter.notifyDataSetChanged();
+				
 				break;
 
 			default:
@@ -77,10 +91,10 @@ public class RecmmendListActivity extends MyActivity {
 		SqliteHelper sqliteHelper = new SqliteHelper(context);
 		DatabaseManager.initializeInstance(sqliteHelper);
 		
-
-		recommendLV = (ListView) super.findViewById(R.id.recommend_list_view);
+		initRefreshListView();
+		//recommendLV = (ListView) super.findViewById(R.id.recommend_list_view);
 		
-		new Thread(new Runnable() {
+		/*new Thread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -88,21 +102,21 @@ public class RecmmendListActivity extends MyActivity {
 				while (true) {
 					if (MyApplication.getMyApplication().isArticleDetailDLOK()) {
 
-						myHandle.sendEmptyMessage(1);
+						
 						break;
 					}
 
 				}
 			}
 		}).start();
-
+*/		myHandle.sendEmptyMessage(1);
 		recommendLV.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.putExtra("id", dataList.get(position).getArticle_id());
+				intent.putExtra("id", dataList.get(position-1).getArticle_id());
 				intent.setClass(RecmmendListActivity.this, RecommendShowPageActivity.class);
 				startActivity(intent);
 
@@ -111,6 +125,38 @@ public class RecmmendListActivity extends MyActivity {
 
 		
 
+	}
+	
+	private void initRefreshListView(){
+		adapter = new RecommendListAdapter();
+		refreshLV = (PullToRefreshListView) findViewById(R.id.recommend_list_view);
+		refreshLV.setOnRefreshListener(new HowWillIrefresh());
+		refreshLV.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+		recommendLV = refreshLV.getRefreshableView();
+		
+		recommendLV.setFastScrollEnabled(false);
+		recommendLV.setFadingEdgeLength(0);
+		recommendLV.setAdapter(adapter);
+	}
+	
+	class HowWillIrefresh implements PullToRefreshBase.OnRefreshListener2<ListView>{
+
+		@Override
+		public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+			String label = DateUtils.formatDateTime(context,
+                    System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
+                            | DateUtils.FORMAT_SHOW_DATE
+                            | DateUtils.FORMAT_ABBREV_ALL);
+			refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+           			
+		}
+
+		@Override
+		public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+			myHandle.sendEmptyMessage(1);
+		}
+
+		
 	}
 
 	class RecommendListAdapter extends BaseAdapter {

@@ -72,13 +72,13 @@ public class MyHttpPost {
 		return strResult;
 	}
 	
-	public static String doGet(String url, String alias) {
+	public static String doGet(String url, String alias,String page) {
 
 		HttpParams httpParams;
 
 		HttpClient httpClient;
 
-		HttpGet httpRequest = new HttpGet(url + "?alias=" + alias);
+		HttpGet httpRequest = new HttpGet(url + "?alias=" + alias+"&page="+page);
 
 		String strResult = "doPostError";
 

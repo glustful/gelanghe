@@ -215,7 +215,7 @@ public class UserCenter extends MyActivity {
 	
 		long preTime = 0;
 	
-	   /*@Override  
+	   @Override  
 	    public boolean onKeyDown(int keyCode, KeyEvent event) {  
 	        // 截获后退键  
 	        if (keyCode == KeyEvent.KEYCODE_BACK) {  
@@ -233,7 +233,7 @@ public class UserCenter extends MyActivity {
 	        }  
 	  
 	        return super.onKeyDown(keyCode, event);  
-	    }  */
+	    }  
 	
 
 }

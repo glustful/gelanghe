@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -52,7 +53,7 @@ public class HomeTabActivity extends MyTabActivity {
 	private Button loginBut;
 	
 	private ProgressBar pb;
-	
+	private HorizontalScrollView mHorizontalScrollView;
 	
 	@SuppressLint("HandlerLeak")
 	private class MyHandle extends Handler {
@@ -84,8 +85,8 @@ public class HomeTabActivity extends MyTabActivity {
 		myHandle =new MyHandle();
 		
 		pb = (ProgressBar) super.findViewById(R.id.home_tab_pgb);
-		
-		new Thread(new Runnable() {
+		mHorizontalScrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView);
+		/*new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -99,7 +100,7 @@ public class HomeTabActivity extends MyTabActivity {
 
 				}
 			}
-		}).start();
+		}).start();*/
 
 		tabLeftBut = (ImageButton) super.findViewById(R.id.home_tab_left_but);
 		tabRightBut = (ImageButton) super.findViewById(R.id.home_tab_right_but);
@@ -237,6 +238,7 @@ public class HomeTabActivity extends MyTabActivity {
 				int currentTab = homeTabHost.getCurrentTab();
 				if (currentTab != 0) {
 					homeTabHost.setCurrentTab(currentTab - 1);
+					scrollToLocation(homeTabHost.getTabWidget().getChildTabViewAt(currentTab-1));
 				}
 
 			}
@@ -250,10 +252,25 @@ public class HomeTabActivity extends MyTabActivity {
 				int currentTab = homeTabHost.getCurrentTab();
 				if (currentTab != 5) {
 					homeTabHost.setCurrentTab(currentTab + 1);
+					scrollToLocation(homeTabHost.getTabWidget().getChildTabViewAt(currentTab+1));
 				}
 			}
 		});
 
+	}
+	
+	/*
+	 * 
+	 * 滚动到指定位置
+	 */
+	private void scrollToLocation(final View titleTwo){
+		 mHorizontalScrollView.post(new Runnable() {
+             @Override
+             public void run() {
+                
+                 mHorizontalScrollView.smoothScrollTo(titleTwo.getMeasuredWidth()*(homeTabHost.getCurrentTab()-1), 0);
+             }
+         });
 	}
 	
 		long preTime = 0;

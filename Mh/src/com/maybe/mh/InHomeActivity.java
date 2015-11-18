@@ -1,7 +1,10 @@
 package com.maybe.mh;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import com.maybe.mh.util.ShowToast;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +12,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -221,6 +225,28 @@ public class InHomeActivity extends MyActivity implements OnPageChangeListener{
 		super.onDestroy();
 		isLoop = false;
 	}
+	
+	long preTime = 0;
+	
+	   @Override  
+	    public boolean onKeyDown(int keyCode, KeyEvent event) {  
+	        // 截获后退键  
+	        if (keyCode == KeyEvent.KEYCODE_BACK) {  
+	            long currentTime = new Date().getTime();  
+	  
+	            // 如果时间间隔大于2秒, 不处理  
+	            if ((currentTime - preTime) > 2000) {  
+	                // 显示消息  
+	                ShowToast.showToastShort(MyApplication.getMyApplication().getApplicationContext(), "再次点击退出格朗和");
+	                // 更新时间  
+	                preTime = currentTime;  
+	                // 截获事件,不再处理  
+	                return true;  
+	            }  
+	        }  
+	  
+	        return super.onKeyDown(keyCode, event);  
+	    }  
 
 }
 

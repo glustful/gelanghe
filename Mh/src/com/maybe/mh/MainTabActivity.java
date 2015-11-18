@@ -18,6 +18,7 @@ import android.widget.TabHost.OnTabChangeListener;
 
 import com.maybe.mh.download.GetNewWorkService;
 import com.maybe.mh.eb.EBActivity;
+import com.maybe.mh.eb.HTML5Activity;
 import com.maybe.mh.json.AppVersionDL;
 
 @SuppressWarnings("deprecation")
@@ -123,7 +124,7 @@ public class MainTabActivity extends TabActivity {
 
 		mainTabHost.addTab(mainTabHost.newTabSpec("maintab1").setIndicator(homeTabHost1).setContent(new Intent(this, HomeTabActivity.class)));
 		mainTabHost.addTab(mainTabHost.newTabSpec("maintab2").setIndicator(homeTabHost2).setContent(new Intent(this, DoWorkActivity.class)));
-		mainTabHost.addTab(mainTabHost.newTabSpec("maintab3").setIndicator(homeTabHost3).setContent(new Intent(this, EBActivity.class)));
+		mainTabHost.addTab(mainTabHost.newTabSpec("maintab3").setIndicator(homeTabHost3).setContent(new Intent(this, HTML5Activity.class)));
 
 		mainTabHost.setCurrentTab(0);
 

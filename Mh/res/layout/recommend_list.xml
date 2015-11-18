@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF" >
-    
+    <!-- 
     
     <ListView 
         android:id="@+id/recommend_list_view"
@@ -13,7 +13,13 @@
         android:cacheColorHint="@null"
         android:dividerHeight="1dip"
         android:divider="#E8E8E7"
-        ></ListView>
-    
+        ></ListView> -->
+     <com.handmark.pulltorefresh.library.PullToRefreshListView 
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/recommend_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ptr:ptrAnimationStyle="flip"
+        />
 
 </LinearLayout>
