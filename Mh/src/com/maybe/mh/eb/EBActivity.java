@@ -33,7 +33,6 @@ import com.maybe.mh.DoWorkShowPageActivity;
 import com.maybe.mh.MainTabActivity;
 import com.maybe.mh.MyActivity;
 import com.maybe.mh.MyApplication;
-import com.maybe.mh.R;
 import com.maybe.mh.DoWorkActivity.IVOnClickListener;
 import com.maybe.mh.DoWorkActivity.IVOnTouchListener;
 import com.maybe.mh.pojo.ArticleDetail;
@@ -43,6 +42,7 @@ import com.maybe.mh.sqlite.CategoryDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 /*
  * 电商中心主Activity入口

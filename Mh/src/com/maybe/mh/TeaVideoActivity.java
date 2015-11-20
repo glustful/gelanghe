@@ -24,6 +24,7 @@ import com.maybe.mh.sqlite.ArticleDetailDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class TeaVideoActivity extends MyActivity {
 
@@ -52,7 +53,10 @@ public class TeaVideoActivity extends MyActivity {
 				DatabaseManager.getInstance().closeDatabase();
 				
 				teaVideoGV.setAdapter(new TeaGridViewAdapter());
-
+				if(dataList.size()==0 ){
+					myHandle.sendEmptyMessageDelayed(1, 200);
+					
+				}
 				break;
 
 			default:

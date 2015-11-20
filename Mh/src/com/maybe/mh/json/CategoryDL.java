@@ -1,10 +1,17 @@
 package com.maybe.mh.json;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+
+import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.os.Message;
+import android.preference.PreferenceManager;
 
 import com.alibaba.fastjson.JSON;
 import com.maybe.mh.MyApplication;
@@ -18,6 +25,7 @@ public class CategoryDL {
 
 	private static final String categoryUrl = MyApplication.getServerurl() + "/getCategoryListNew.php";
 
+	@SuppressLint("NewApi")
 	public static boolean downloadCategory() {
 
 		String lastId = new CategoryDao().getLastCategory() + "";
@@ -34,8 +42,15 @@ public class CategoryDL {
 			List<Category> list = new ArrayList<Category>();
 
 			list = JSON.parseArray(jsonStr, Category.class);
+			Set<String> alias = new HashSet<String>();
+			for(Category c: list){
+				if(c.getParent_id()==0){
+					alias.add(c.getAlias().trim());
+					
+					
+				}
+			}
 			
-
 			if (list.size() > 0) {
 
 				int listSize = list.size();

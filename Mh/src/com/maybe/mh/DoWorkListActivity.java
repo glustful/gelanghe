@@ -25,6 +25,7 @@ import com.maybe.mh.sqlite.ArticleDetailDao;
 import com.maybe.mh.sqlite.CategoryDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
+import com.tiandu.mh.R;
 
 public class DoWorkListActivity extends MyActivity {
 
@@ -54,11 +55,9 @@ public class DoWorkListActivity extends MyActivity {
 				{
 					groupId = MyApplication.getMyApplication().getLoginUser().getGroup_id();
 				}
-				if(alias.size()>1){
-					dataList = new ArticleDetailDao().getAllArticleDetailByCategoryAndGroupId(null, groupId,alias.toArray());
-				}else{
+				
 				dataList = new ArticleDetailDao().getAllArticleDetailByCategoryAndGroupId(alias.get(0), groupId);
-				}
+				
 				DatabaseManager.getInstance().closeDatabase();
 				
 				doWorkLV.setAdapter(new DoWorkListAdapter());
@@ -100,15 +99,9 @@ public class DoWorkListActivity extends MyActivity {
 		categoryTV = (TextView) super.findViewById(R.id.do_work_list_category_name_tv);
 		
 		Category category = new CategoryDao().getCategoryByAlias(alias.get(0));
-		if(alias.size() > 1){
-			if(alias.get(0).equals("jihuashengyu")){
-				categoryTV.setText("文教计卫");
-			}else{
-				categoryTV.setText("信访调解");
-			}
-		}else{
+		
 		categoryTV.setText(category.getCategory());
-		}
+		
 
 		backIB.setOnClickListener(new OnClickListener() {
 

@@ -28,6 +28,7 @@ import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.FormatStr;
 import com.maybe.mh.util.MyHttpPost;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class DoWorkDoPageActivity extends MyActivity {
 

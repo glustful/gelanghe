@@ -1,5 +1,7 @@
 package com.maybe.mh;
 
+import com.tiandu.mh.R;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;

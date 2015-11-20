@@ -28,6 +28,7 @@ import com.maybe.mh.sqlite.CategoryDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class BasePartyLExpandListActivity extends MyActivity {
 
@@ -73,6 +74,10 @@ public class BasePartyLExpandListActivity extends MyActivity {
 						articleGroupList.add(dataList);
 					}
 					DatabaseManager.getInstance().closeDatabase();
+					if(articleGroupList.size()==0){
+						myHandle.sendEmptyMessageDelayed(1, 500);
+						
+					}
 				}
 				
 				expandLV.setAdapter(new ExpandListViewAdapter());

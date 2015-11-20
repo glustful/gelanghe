@@ -3,6 +3,8 @@ package com.maybe.mh;
 import java.io.File;
 import java.util.List;
 
+import com.tiandu.mh.R;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

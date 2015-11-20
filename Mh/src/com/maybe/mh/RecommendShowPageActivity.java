@@ -34,6 +34,7 @@ import com.maybe.mh.sqlite.DoWorkAttachDao;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.RHttpDownloader;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class RecommendShowPageActivity extends MyActivity {

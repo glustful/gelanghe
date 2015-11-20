@@ -28,6 +28,7 @@ import com.maybe.mh.sqlite.CategoryDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class OpenJobExpandListActivity extends MyActivity {
 
@@ -74,7 +75,10 @@ public class OpenJobExpandListActivity extends MyActivity {
 					}
 
 					DatabaseManager.getInstance().closeDatabase();
-
+					if(articleGroupList.size()==0){
+						myHandle.sendEmptyMessageDelayed(1, 200);
+						
+					}
 				}
 
 				

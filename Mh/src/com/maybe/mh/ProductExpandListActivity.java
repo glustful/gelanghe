@@ -29,6 +29,7 @@ import com.maybe.mh.sqlite.CategoryDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class ProductExpandListActivity extends MyActivity {
 

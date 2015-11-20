@@ -1,7 +1,9 @@
 package com.maybe.mh.util;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -78,9 +80,58 @@ public class MyHttpPost {
 
 		HttpClient httpClient;
 
-		HttpGet httpRequest = new HttpGet(url + "?alias=" + alias+"&page="+page);
+		HttpGet httpRequest = new HttpGet(url + "?alias=" + alias+"&page="+page+"&page_limit=50");
 
-		String strResult = "doPostError";
+		String strResult = "doGetError";
+
+		httpParams = new BasicHttpParams();
+
+		HttpConnectionParams.setConnectionTimeout(httpParams, 4 * 1000);
+
+		HttpConnectionParams.setSoTimeout(httpParams, 4 * 1000);
+
+		HttpConnectionParams.setSocketBufferSize(httpParams, 8192);
+
+		HttpClientParams.setRedirecting(httpParams, true);
+
+		String userAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2) Gecko/20100115 Firefox/3.6";
+		HttpProtocolParams.setUserAgent(httpParams, userAgent);
+
+		httpClient = new DefaultHttpClient(httpParams);
+
+		try {
+			
+			HttpResponse httpResponse = httpClient.execute(httpRequest);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				strResult = EntityUtils.toString(httpResponse.getEntity());
+			} else {
+				strResult = "Error Response: " + httpResponse.getStatusLine().toString();
+			}
+		} catch (ClientProtocolException e) {
+			// strResult = e.getMessage().toString();
+			e.printStackTrace();
+		} catch (IOException e) {
+			// strResult = e.getMessage().toString();
+			e.printStackTrace();
+		} catch (Exception e) {
+			// strResult = e.getMessage().toString();
+			e.printStackTrace();
+		}
+
+		//System.out.println("strResult =" + strResult);
+
+		return strResult;
+	}
+	
+	public static String doGet(String url) {
+
+		HttpParams httpParams;
+
+		HttpClient httpClient;
+		
+		HttpGet httpRequest = new HttpGet(url);
+
+		String strResult = "doGetError";
 
 		httpParams = new BasicHttpParams();
 

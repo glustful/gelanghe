@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.maybe.mh.upload.HttpMultipartPost;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class MyFileManager extends MyActivity {
 	private List<String> items = null;

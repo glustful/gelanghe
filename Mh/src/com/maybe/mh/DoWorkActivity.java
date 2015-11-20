@@ -8,9 +8,11 @@ import com.maybe.mh.pojo.User;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.LogInUserDao;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class DoWorkActivity extends MyActivity {
 
@@ -119,13 +122,18 @@ public class DoWorkActivity extends MyActivity {
 			ArrayList<String> category = new ArrayList<String>();
 			if (v == iv01) {
 				//category = "jihuashengyu or wenhua"; //1
-				category.add(0,"jihuashengyu");
-				category.add("wenhua");
+				//category.add(0,"jihuashengyu");
+				//category.add("wenhua");
+				category.add("wjjw");
 				
 			} else if (v == iv02) {
 				category.add("caijingongjing");
 			} else if (v == iv03) {
 				category.add("shangfangshuqiu");//3 维稳中心
+				Toast toast = Toast.makeText(DoWorkActivity.this, "正在努力建设中，请稍后访问！", Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				return;
 			} else if (v == iv04) {
 				category.add("paichusuogongzuo");
 			} else if (v == iv05) {
@@ -142,6 +150,7 @@ public class DoWorkActivity extends MyActivity {
 				if (userList.size() > 0) {
 					intent.setClass(DoWorkActivity.this, MyWorkListActivity.class);
 				} else {
+					intent.putExtra("skip", true);
 					intent.setClass(DoWorkActivity.this, UserLoginActivity.class);
 				}
 				startActivity(intent);
@@ -151,8 +160,9 @@ public class DoWorkActivity extends MyActivity {
 			} else if (v == iv10) {
 				category.add("minzhenggongzuo");
 			} else if (v == iv11) {
-				category.add(0,"sifasuo");
-				category.add("shangfangshuqiu");
+				//category.add(0,"sifasuo");
+				//category.add("shangfangshuqiu");
+				category.add("sfxf");
 			} else if (v == iv12) {
 				category.add("shouyi");
 			} else if (v == iv13) {

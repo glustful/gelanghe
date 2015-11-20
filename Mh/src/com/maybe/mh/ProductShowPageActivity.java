@@ -1,5 +1,7 @@
 package com.maybe.mh;
 
+import com.tiandu.mh.R;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;

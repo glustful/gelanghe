@@ -1,5 +1,10 @@
 package com.maybe.mh;
 
+import java.util.ArrayList;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ComponentName;
@@ -17,6 +22,8 @@ import android.widget.TextView;
 
 import com.maybe.mh.download.DownloadService;
 import com.maybe.mh.download.DownloadService.DownloadBinder;
+import com.maybe.mh.util.MyHttpPost;
+import com.tiandu.mh.R;
 
 public class NotificationUpdateActivity extends Activity {
 	private Button btn_cancel;// btn_update,
@@ -137,6 +144,18 @@ public class NotificationUpdateActivity extends Activity {
 		public void OnBackResult(Object result) {
 			// TODO Auto-generated method stub
 			if ("finish".equals(result)) {
+				
+				new Thread(){
+					public void run(){
+						ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+						params.add(new BasicNameValuePair("id", "1111"));
+						String result = MyHttpPost.doPost("http://www.gelanghe.gov.cn/getUpdatenum.php", params);
+						result = result.replaceAll("\n", "").trim();
+
+						MyApplication.getMyApplication().setUpdateCount(result);
+					}
+				}.start();
+				
 				finish();
 				return;
 			}

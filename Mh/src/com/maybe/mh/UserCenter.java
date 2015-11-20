@@ -27,8 +27,16 @@ import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.LogInUserDao;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class UserCenter extends MyActivity {
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		updateCount.setText("更新数：" + MyApplication.getMyApplication().getUpdateCount());
+	}
 
 	private Button settingBut;
 	private Button aboutUsBut;
@@ -84,7 +92,7 @@ public class UserCenter extends MyActivity {
 		count= (TextView) super.findViewById(R.id.installCount);
 		count.setText("安装数：" + MyApplication.getMyApplication().getCount());
 		updateCount= (TextView) super.findViewById(R.id.updateCount);
-		updateCount.setText("更新数：" + MyApplication.getMyApplication().getCount());
+		
 		settingBut.setOnClickListener(new OnClickListener() {
 
 			@Override

@@ -4,6 +4,7 @@ import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.DoWorkDao;
 import com.maybe.mh.sqlite.LogInUserDao;
 import com.maybe.mh.sqlite.SqliteHelper;
+import com.tiandu.mh.R;
 
 import android.content.Context;
 import android.os.Bundle;

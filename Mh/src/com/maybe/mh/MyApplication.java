@@ -2,9 +2,13 @@ package com.maybe.mh;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
+import android.preference.PreferenceManager;
 
 import com.maybe.mh.pojo.ArticleDetail;
 import com.maybe.mh.pojo.Category;
@@ -14,6 +18,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.tiandu.mh.R;
 
 public class MyApplication extends Application {
 
@@ -23,7 +28,7 @@ public class MyApplication extends Application {
 	public HashMap<String , Object> map = new HashMap<String, Object>();
 	public static int lock = 0;
 	public static boolean isFirst = true;
-	public static ArrayList<String> alias = new ArrayList<String>();
+	public static Set<String> alias = new HashSet<String>();
 
 	private String localPath;
 	private boolean articleDetailDLOK;
@@ -31,6 +36,7 @@ public class MyApplication extends Application {
 	private List<String> fileNameList = new ArrayList<String>();
 	private int imageHeight = 0;
 	private String count="";
+	private String updateCount = "";
 	public String getCount() {
 		return count;
 	}
@@ -138,6 +144,7 @@ public class MyApplication extends Application {
 		return myApplication;
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
@@ -146,17 +153,7 @@ public class MyApplication extends Application {
 		map.put("topAds", null);
 
 		myApplication = this;
-		if(alias.size() == 0){
-		alias.add("tuijian");
-		alias.add("dangjian");
-		alias.add("other");
 		
-		alias.add("fuwu");
-		alias.add("chanpin");
-		alias.add("zhengwu");
-		alias.add("chaxiang");
-			alias.add("about");
-		}
 		
 		DisplayImageOptions options = new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.ic_launcher).showImageForEmptyUri(R.drawable.ic_launcher).showImageOnFail(R.drawable.ic_launcher).cacheInMemory(true).cacheOnDisc(true).build();
 
@@ -166,6 +163,14 @@ public class MyApplication extends Application {
 		
 		
 
+	}
+	public void setUpdateCount(String jsonStr) {
+		// TODO Auto-generated method stub
+		updateCount = jsonStr;
+	}
+	
+	public String getUpdateCount(){
+		return this.updateCount;
 	}
 
 }

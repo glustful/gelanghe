@@ -59,8 +59,8 @@ public class ArticleDetailDL {
 
 	public static boolean downloadArticleDetail(HashMap<String, String> args) {
 
-		String newUrl = MyApplication.getServerurl()
-				+ "/api/getArticleList.php";
+		String newUrl = MyApplication.getServerurl() + "/api/getArticleList.php";
+			//	+ "/api/getArticleList.php";
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		for (Map.Entry<String, String> entry : args.entrySet()) {
@@ -97,7 +97,7 @@ public class ArticleDetailDL {
 					sqliteDatabase.endTransaction();
 					DatabaseManager.getInstance().closeDatabase();
 					// MyApplication.getMyApplication().setArticleDetailDLOK(true);
-					if(list.size()<10){
+					if(list.size()<50){
 						if (increatment() == 0){
 							MyApplication.getMyApplication().setArticleDetailDLOK(true);
 						}
@@ -116,13 +116,13 @@ public class ArticleDetailDL {
 			}
 			page++;
 		}
-		System.out.println(args.get("alias")+" page="+page);
+		
 		return true;
 	}
 
 	private static synchronized int increatment() {
 		MyApplication.lock = MyApplication.lock - 1;
-		System.out.println("lock count=" + MyApplication.lock);
+		
 		return MyApplication.lock;
 	}
 

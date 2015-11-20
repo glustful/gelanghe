@@ -33,6 +33,7 @@ import com.maybe.mh.sqlite.DoWorkDao;
 import com.maybe.mh.sqlite.LogInUserDao;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.MyHttpPost;
+import com.tiandu.mh.R;
 
 public class MyWorkListActivity extends MyActivity {
 
@@ -113,38 +114,17 @@ public class MyWorkListActivity extends MyActivity {
 		public void handleMessage(Message msg) {
 
 			try {
-				// JSONObject resObj =
-				// JSONObject.parseObject(msg.obj.toString());
-				// Object jsonUser = resObj.get("user");
-				// Object infoStr = resObj.get("info");
-				// if(infoStr != null){
-				//
-				// List<DoWork> doWorkList = JSON.parseArray(infoStr.toString(),
-				// DoWork.class);
-				//
-				// if (doWorkList.size() > 0) {
-				//
-				// int listSize = doWorkList.size();
-				// DoWorkDao doWorkDao = new DoWorkDao();
-				// doWorkDao.deleteAll();
-				//
-				// for (int i = 0; i < listSize; i++) {
-				// doWorkDao.addDoWork(doWorkList.get(i));
-				// }
-				// DatabaseManager.getInstance().closeDatabase();
-				// dataList =doWorkList;
-				// }
-				// }
-				JSONObject resObj =JSONObject.parseObject(msg.obj.toString());
-				Object jsonUser = resObj.get("user");
-				Object infoStr = resObj.get("info");
-				org.json.JSONArray jsonArray = new JSONArray((infoStr.toString()));
+				
+				org.json.JSONObject resObj =new org.json.JSONObject(msg.obj.toString());//JSONObject.parseObject(msg.obj.toString());
+				//Object jsonUser = resObj.get("user");
+				//Object infoStr = resObj.get("info");
+				org.json.JSONArray jsonArray = resObj.optJSONArray("info");
 				org.json.JSONObject obj = null;
 				DoWork doWork = null;
 				List<DoWork> doWorkList = new ArrayList<DoWork>();
 				for (int i = 0; i < jsonArray.length(); i++) {
 
-					obj = jsonArray.getJSONObject(i);
+					obj = jsonArray.optJSONObject(i);
 					doWork = new DoWork();
 					doWork.setFeedback_id(obj.getInt("feedback_id"));
 					doWork.setCategory_id(obj.getInt("category_id"));
@@ -172,6 +152,7 @@ public class MyWorkListActivity extends MyActivity {
 				// ------------------------------------------------------------
 
 			} catch (Exception e) {
+				e.printStackTrace();
 				// TODO: handle exception
 			}
 			listAdapter = new MyWorkListAdapter();

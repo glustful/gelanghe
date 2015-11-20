@@ -1,5 +1,7 @@
 package com.maybe.mh;
 
+import com.tiandu.mh.R;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.media.MediaPlayer;

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ import com.maybe.mh.download.GetNewWorkService;
 import com.maybe.mh.eb.EBActivity;
 import com.maybe.mh.eb.HTML5Activity;
 import com.maybe.mh.json.AppVersionDL;
+import com.tiandu.mh.R;
 
 @SuppressWarnings("deprecation")
 public class MainTabActivity extends TabActivity {
@@ -129,19 +131,22 @@ public class MainTabActivity extends TabActivity {
 		mainTabHost.setCurrentTab(0);
 
 		mainTabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			@SuppressLint("NewApi")
 			@Override
 			public void onTabChanged(String tabId) {
 
 				mainTab1.setImageResource(R.drawable.tab_down_1_unselect);
 				mainTab2.setImageResource(R.drawable.tab_down_2_unselect);
-				mainTab3.setImageResource(R.drawable.tab_down_3_unselect);
+				//mainTab3.setImageResource(R.drawable.tab_down_3_unselect);
+				mainTab3.setBackground(null);
 
 				if (tabId.equalsIgnoreCase("maintab1")) {
 					mainTab1.setImageResource(R.drawable.tab_down_1_select);
 				} else if (tabId.equalsIgnoreCase("maintab2")) {
 					mainTab2.setImageResource(R.drawable.tab_down_2_select);
 				} else if (tabId.equalsIgnoreCase("maintab3")) {
-					mainTab3.setImageResource(R.drawable.tab_down_3_select);
+					//mainTab3.setImageResource(R.drawable.tab_down_3_select);
+					mainTab3.setBackgroundColor(Color.parseColor("#039ca1"));
 				}
 			}
 		});

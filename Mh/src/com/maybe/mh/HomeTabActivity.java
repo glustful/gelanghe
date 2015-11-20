@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.maybe.mh.pojo.TopAd;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 @SuppressWarnings("deprecation")
 public class HomeTabActivity extends MyTabActivity {
@@ -159,7 +160,7 @@ public class HomeTabActivity extends MyTabActivity {
 		homeTabHost3 = getLayoutInflater().inflate(R.layout.home_tab_indicator_3, null);
 		homeTabHost4 = getLayoutInflater().inflate(R.layout.home_tab_indicator_4, null);
 		homeTabHost5 = getLayoutInflater().inflate(R.layout.home_tab_indicator_5, null);
-		homeTabHost6 = getLayoutInflater().inflate(R.layout.home_tab_indicator_1, null);
+		//homeTabHost6 = getLayoutInflater().inflate(R.layout.home_tab_indicator_1, null);
 
 		homeTab1 = (TextView) homeTabHost1.findViewById(R.id.home_tab_indicator_1_tv);
 		homeTab2 = (TextView) homeTabHost2.findViewById(R.id.home_tab_indicator_2_tv);
@@ -172,7 +173,7 @@ public class HomeTabActivity extends MyTabActivity {
 		homeTab3.setText("政务公开");
 		homeTab4.setText("茶乡视频");
 		homeTab5.setText("个人中心");
-		((TextView)homeTabHost6.findViewById(R.id.home_tab_indicator_1_tv)).setText("在格朗河");
+		//((TextView)homeTabHost6.findViewById(R.id.home_tab_indicator_1_tv)).setText("在格朗河");
 
 		homeTabHost = getTabHost();
 
@@ -181,7 +182,7 @@ public class HomeTabActivity extends MyTabActivity {
 		homeTabHost.addTab(homeTabHost.newTabSpec("hometab3").setIndicator(homeTabHost3).setContent(new Intent(this, OpenJobExpandListActivity.class)));
 		homeTabHost.addTab(homeTabHost.newTabSpec("hometab4").setIndicator(homeTabHost4).setContent(new Intent(this, TeaVideoActivity.class)));
 		
-		homeTabHost.addTab(homeTabHost.newTabSpec("hometab6").setIndicator(homeTabHost6).setContent(new Intent(this, InHomeActivity.class)));
+		//homeTabHost.addTab(homeTabHost.newTabSpec("hometab6").setIndicator(homeTabHost6).setContent(new Intent(this, InHomeActivity.class)));
 		homeTabHost.addTab(homeTabHost.newTabSpec("hometab5").setIndicator(homeTabHost5).setContent(new Intent(this, UserCenter.class)));
 		homeTabHost.setCurrentTab(0);
 
@@ -189,8 +190,6 @@ public class HomeTabActivity extends MyTabActivity {
 
 			@Override
 			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
-				
 				
 				if(MyApplication.getMyApplication().map.get("topAds") == null){
 					if (tabId.equalsIgnoreCase("hometab1")) {
@@ -202,8 +201,6 @@ public class HomeTabActivity extends MyTabActivity {
 					} else if (tabId.equalsIgnoreCase("hometab4")) {
 						adIV.setImageResource(R.drawable.ic_launcher);
 					} else if (tabId.equalsIgnoreCase("hometab5")) {
-						adIV.setImageResource(R.drawable.ic_launcher);
-					}else if (tabId.equalsIgnoreCase("hometab6")) {
 						adIV.setImageResource(R.drawable.ic_launcher);
 					}
 				}else{
@@ -217,11 +214,9 @@ public class HomeTabActivity extends MyTabActivity {
 						imageLoader.displayImage( MyApplication.getServerurl() + topAds.get(2).getLogo(), adIV);
 					} else if (tabId.equalsIgnoreCase("hometab4")) {
 						imageLoader.displayImage( MyApplication.getServerurl() + topAds.get(3).getLogo(), adIV);
-					} else if (tabId.equalsIgnoreCase("hometab5")) {
-						imageLoader.displayImage( MyApplication.getServerurl() + topAds.get(4).getLogo(), adIV);
-					}
-					else if (tabId.equalsIgnoreCase("hometab6")) {
-						imageLoader.displayImage( MyApplication.getServerurl() + topAds.get(4).getLogo(), adIV);
+					} 
+					else if (tabId.equalsIgnoreCase("hometab5")) {
+						imageLoader.displayImage( MyApplication.getServerurl() + topAds.get(topAds.size()-1).getLogo(), adIV);
 					}
 				}
 				
@@ -250,7 +245,7 @@ public class HomeTabActivity extends MyTabActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				int currentTab = homeTabHost.getCurrentTab();
-				if (currentTab != 5) {
+				if (currentTab != 4) {
 					homeTabHost.setCurrentTab(currentTab + 1);
 					scrollToLocation(homeTabHost.getTabWidget().getChildTabViewAt(currentTab+1));
 				}

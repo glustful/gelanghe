@@ -30,6 +30,7 @@ import com.maybe.mh.sqlite.ArticleDetailDao;
 import com.maybe.mh.sqlite.DatabaseManager;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 public class RecmmendListActivity extends MyActivity {
 
@@ -56,6 +57,10 @@ public class RecmmendListActivity extends MyActivity {
 				}
 				List<ArticleDetail> result = new ArticleDetailDao().getAllArticleDetailByCategoryAndGroupId("tuijian", groupId,page,null);
 				refreshLV.onRefreshComplete();
+				if(dataList.size()==0 && (result==null || result.size()==0)){
+					myHandle.sendEmptyMessageDelayed(1, 200);
+					return;
+				}
 				if(result==null || result.size()<10){
 					refreshLV.setMode(Mode.DISABLED);
 				}else{

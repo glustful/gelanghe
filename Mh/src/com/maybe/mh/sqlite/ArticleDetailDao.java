@@ -150,61 +150,44 @@ public class ArticleDetailDao {
 	}
 
 	public List<ArticleDetail> getAllArticleDetailByCategoryAndGroupId(
-			String category, String groupId, Object ...args) {
+			String category, String groupId) {
 		List<ArticleDetail> list = new ArrayList<ArticleDetail>();
 		Cursor cursor = null;
 		int intgroupId = Integer.parseInt(groupId);
 
 		sqliteDatabase.beginTransaction();
-
+		String sort = "desc";
+		if(category.equals("chaxiang")){
+			sort = "asc";
+		}
 		if (intgroupId == 0) {
-			if (args != null && args.length > 0) {
+			
 				cursor = sqliteDatabase
 						.rawQuery(
-								"select * from article_detail where (alias = ? or alias = ?) and groups = ? order by timesort desc",
-								new String[] { args[0].toString().toString(),args[1].toString().toString(), "0" });
-			} else {
-				cursor = sqliteDatabase
-						.rawQuery(
-								"select * from article_detail where alias = ? and groups = ? order by timesort desc",
-								new String[] { category, "0" });
-			}
+								"select * from article_detail where alias = ? and groups = ? order by timesort "+sort,
+								new String[] { category, "0"});
+			
 		} else if (intgroupId == 1) {
-			if (args != null && args.length > 0) {
+			
 				cursor = sqliteDatabase
 						.rawQuery(
-								"select * from article_detail where (alias = ? or alias = ?) order by timesort desc",
-								new String[] { args[0].toString(),args[1].toString() });
-			} else {
-				cursor = sqliteDatabase
-						.rawQuery(
-								"select * from article_detail where alias = ? order by timesort desc",
+								"select * from article_detail where alias = ? order by timesort " + sort,
 								new String[] { category });
-			}
+			
 		} else if (intgroupId == 2) {
-			if (args != null && args.length > 0) {
+			
 				cursor = sqliteDatabase
 						.rawQuery(
-								"select * from article_detail where (alias = ? or alias = ?) and (groups = ? or  groups = ? or  groups = ?)  order by timesort desc",
-								new String[] { args[0].toString(),args[1].toString(), "0", "2", "2:3" });
-			} else {
-				cursor = sqliteDatabase
-						.rawQuery(
-								"select * from article_detail where alias = ? and (groups = ? or  groups = ? or  groups = ?)  order by timesort desc",
+								"select * from article_detail where alias = ? and (groups = ? or  groups = ? or  groups = ?)  order by timesort " + sort,
 								new String[] { category, "0", "2", "2:3" });
-			}
+			
 		} else if (intgroupId == 3) {
-			if (args != null && args.length > 0) {
+			
 				cursor = sqliteDatabase
 						.rawQuery(
-								"select * from article_detail where (alias = ? or alias = ?) and (groups = ? or  groups = ? or  groups = ?)  order by timesort desc",
-								new String[] { args[0].toString(),args[1].toString(), "0", "3", "2:3" });
-			} else {
-				cursor = sqliteDatabase
-						.rawQuery(
-								"select * from article_detail where alias = ? and (groups = ? or  groups = ? or  groups = ?)  order by timesort desc",
+								"select * from article_detail where alias = ? and (groups = ? or  groups = ? or  groups = ?)  order by timesort " + sort,
 								new String[] { category, "0", "3", "2:3" });
-			}
+			
 		}
 
 		while (cursor.moveToNext()) {
@@ -586,7 +569,7 @@ public class ArticleDetailDao {
 	
 	public synchronized void deleteAlls() {
 		if (MyApplication.isFirst){
-			System.out.println("lock start");
+			
 			MyApplication.isFirst = false;
 		sqliteDatabase.beginTransaction();
 		System.out.println(sqliteDatabase.delete("article_detail", null, null));

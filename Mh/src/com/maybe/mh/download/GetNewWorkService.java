@@ -19,7 +19,7 @@ import android.os.Message;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.maybe.mh.MyApplication;
-import com.maybe.mh.R;
+import com.tiandu.mh.R;
 import com.maybe.mh.RecommendShowPageActivity;
 import com.maybe.mh.WorkDetailActivity;
 import com.maybe.mh.pojo.ArticleDetail;

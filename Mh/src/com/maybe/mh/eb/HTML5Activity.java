@@ -1,7 +1,9 @@
 package com.maybe.mh.eb;
 
 import java.util.Date;
+import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -24,17 +26,20 @@ import android.widget.ProgressBar;
 
 import com.maybe.mh.MyActivity;
 import com.maybe.mh.MyApplication;
-import com.maybe.mh.R;
+import com.tiandu.mh.R;
 import com.maybe.mh.util.ShowToast;
+
 
 public class HTML5Activity extends MyActivity {
 	private WebView mWebView;
 	private ProgressBar pb;
+	private String url = "http://www.gelanghe.gov.cn/glh2015/plist.php?alias=products&a=1";
 	
 	@Override
 	public void onBackPressed() {
-		
-			if(mWebView!=null&&mWebView.canGoBack()){
+			System.out.println("url="+mWebView.getUrl());
+			if(mWebView!=null&&!mWebView.getUrl().equalsIgnoreCase("http://www.gelanghe.gov.cn/glh2015/")&&mWebView.canGoBack()){
+				
 				mWebView.goBack();
 				
 			}else{
@@ -62,11 +67,13 @@ public class HTML5Activity extends MyActivity {
 		pb = (ProgressBar) findViewById(R.id.progressBar);
 		initWebView();
 		 
-		mWebView.loadUrl("http://www.gelanghe.gov.cn/glh2015/plist.php?alias=products");
+		mWebView.loadUrl(url);
 		
 		
 	}
 	
+	
+
 	private void initWebView() {
 		
 		mWebView.setWebChromeClient(new MyWebChromeClient());
@@ -90,31 +97,10 @@ public class HTML5Activity extends MyActivity {
 
 		s.setDomStorageEnabled(true);
 		
-		
-
 	}
 	
 	long preTime = 0;
 	
-	  /* @Override  
-	    public boolean onKeyDown(int keyCode, KeyEvent event) {  
-	        // 截获后退键  
-	        if (keyCode == KeyEvent.KEYCODE_BACK) {  
-	            long currentTime = new Date().getTime();  
-	  
-	            // 如果时间间隔大于2秒, 不处理  
-	            if ((currentTime - preTime) > 2000) {  
-	                // 显示消息  
-	                ShowToast.showToastShort(MyApplication.getMyApplication().getApplicationContext(), "再次点击退出格朗和");
-	                // 更新时间  
-	                preTime = currentTime;  
-	                // 截获事件,不再处理  
-	                return true;  
-	            }  
-	        }  
-	  
-	        return super.onKeyDown(keyCode, event);  
-	    }  */
 
 	private class MyWebChromeClient extends WebChromeClient {
 

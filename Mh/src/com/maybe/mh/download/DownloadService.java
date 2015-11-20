@@ -24,7 +24,7 @@ import android.widget.RemoteViews;
 import com.maybe.mh.MyApplication;
 import com.maybe.mh.NotificationUpdateActivity;
 import com.maybe.mh.NotificationUpdateActivity.ICallbackResult;
-import com.maybe.mh.R;
+import com.tiandu.mh.R;
 
 public class DownloadService extends Service {
 	private static final int NOTIFY_ID = 0;

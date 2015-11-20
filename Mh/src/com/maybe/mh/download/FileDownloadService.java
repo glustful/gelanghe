@@ -25,7 +25,7 @@ import android.widget.RemoteViews;
 import com.maybe.mh.MyApplication;
 import com.maybe.mh.NotificationUpdateActivity;
 import com.maybe.mh.NotificationUpdateActivity.ICallbackResult;
-import com.maybe.mh.R;
+import com.tiandu.mh.R;
 import com.maybe.mh.util.ShowToast;
 
 public class FileDownloadService extends Service {

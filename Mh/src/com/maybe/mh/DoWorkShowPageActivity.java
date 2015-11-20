@@ -36,6 +36,7 @@ import com.maybe.mh.sqlite.DoWorkAttachDao;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.HttpDownloader;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class DoWorkShowPageActivity extends MyActivity {

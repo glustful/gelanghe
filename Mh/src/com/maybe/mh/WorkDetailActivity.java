@@ -40,6 +40,7 @@ import com.maybe.mh.sqlite.FeedbackAttachDao;
 import com.maybe.mh.sqlite.SqliteHelper;
 import com.maybe.mh.util.CopyOfHttpDownloader;
 import com.maybe.mh.util.ShowToast;
+import com.tiandu.mh.R;
 
 @SuppressLint({ "HandlerLeak", "JavascriptInterface", "SetJavaScriptEnabled" })
 public class WorkDetailActivity extends MyActivity {
