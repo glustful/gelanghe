@@ -38,7 +38,7 @@ public class RecmmendListActivity extends MyActivity {
 
 	private ListView recommendLV;
 	private PullToRefreshListView refreshLV;
-	private int page = 1;
+	private int page = 1;    
 	private Context context;
 	private RecommendListAdapter adapter;
 

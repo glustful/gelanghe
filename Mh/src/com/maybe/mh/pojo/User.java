@@ -5,7 +5,16 @@ public class User {
 	private String group_id;
 	private String username;
 	private String pwd;
+	private String role = "1";
+	private String sellerUrl = "";
 
+	public String getSellerUrl() {
+		return sellerUrl;
+	}
+
+	public void setSellerUrl(String sellerUrl) {
+		this.sellerUrl = sellerUrl;
+	}
 
 	public String getGroup_id() {
 		return group_id;
@@ -13,6 +22,14 @@ public class User {
 
 	public void setGroup_id(String group_id) {
 		this.group_id = group_id;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getUsername() {

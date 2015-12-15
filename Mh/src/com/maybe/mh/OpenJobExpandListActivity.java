@@ -66,15 +66,19 @@ public class OpenJobExpandListActivity extends MyActivity {
 					int listSize = categoryList.size();
 
 					ArticleDetailDao detailDao = new ArticleDetailDao();
-
+					int count = 0;
 					for (int i = 0; i < listSize; i++) {
 
 						dataList = detailDao.getAllArticleDetailByCategoryAndGroupId(categoryList.get(i).getAlias(), groupId);
-
+						if(dataList==null || dataList.size() == 0){
+							count++;
+						}
 						articleGroupList.add(dataList);
 					}
 
 					DatabaseManager.getInstance().closeDatabase();
+					if(count == articleGroupList.size())
+						articleGroupList.clear();
 					if(articleGroupList.size()==0){
 						myHandle.sendEmptyMessageDelayed(1, 200);
 						
@@ -113,21 +117,15 @@ public class OpenJobExpandListActivity extends MyActivity {
 		
 		expandLV = (ExpandableListView) super.findViewById(R.id.open_job_elv);
 		
-		new Thread(new Runnable() {
+		/*new Thread(new Runnable() {
 
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				while (true) {
-					if (MyApplication.getMyApplication().isArticleDetailDLOK()) {
-
+			public void run() {*/
+				
 						myHandle.sendEmptyMessage(1);
-						break;
-					}
-
-				}
-			}
-		}).start();
+						
+			/*}
+		}).start();*/
 		
 		
 

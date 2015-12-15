@@ -79,7 +79,6 @@ public class StartShowActivity extends Activity {
 		setContentView(R.layout.start_show_main);
 		context = StartShowActivity.this;
 
-		System.out.println("getSDPath()" + getSDPath());
 
 		MyApplication.getMyApplication().setLocalPath(getSDPath());
 
@@ -91,7 +90,19 @@ public class StartShowActivity extends Activity {
 		List<User> loginUser = new LogInUserDao().getAlluser();
 		DatabaseManager.getInstance().closeDatabase();
 		if (loginUser != null && loginUser.size() > 0) {
-			MyApplication.getMyApplication().setLoginUser(loginUser.get(0));
+			for(int i=0;i<loginUser.size();i++){
+				if(!loginUser.get(i).getRole().equals("2")){
+					MyApplication.getMyApplication().setLoginUser(loginUser.get(i));
+					break;
+				}
+			}
+			for(int i=0;i<loginUser.size();i++){
+				if(loginUser.get(i).getRole().equals("2")){
+					MyApplication.getMyApplication().setSellerUser(loginUser.get(i));
+					break;
+				}
+			}
+			
 		}
 		
 		MyApplication.alias.clear();
@@ -112,6 +123,11 @@ public class StartShowActivity extends Activity {
 	for (String str : MyApplication.alias) {
 		final HashMap<String, String> params = new HashMap<String, String>();
 		params.put("alias", str);
+		if(str.equalsIgnoreCase("tuijian")){
+		params.put("page_limit", "20");
+		}else{
+			params.put("page_limit", "200");
+		}
 		new Thread(){
 			public void run(){
 				downloadArticleDetail(params);
@@ -132,11 +148,11 @@ public class StartShowActivity extends Activity {
 				jsonStr = jsonStr.replaceAll("\n", "").trim();
 
 				MyApplication.getMyApplication().setCount(jsonStr);
-				jsonStr = MyHttpPost.doGet(
+				/*jsonStr = MyHttpPost.doGet(
 						"http://www.gelanghe.gov.cn/getAppupdateNum.php");
 				jsonStr = jsonStr.replaceAll("\n", "").trim();
 
-				MyApplication.getMyApplication().setUpdateCount(jsonStr);
+				MyApplication.getMyApplication().setUpdateCount(jsonStr);*/
 				/*
 				 * System.out.println("开始下载articleDetail"); if
 				 * (ArticleDetailDL.downloadArticleDetail()) {

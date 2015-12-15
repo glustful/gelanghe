@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SqliteHelper extends SQLiteOpenHelper {
 
 	private static final String DataBaseName = "mh";
-	private static final int DataBaseVersion = 1;
+	private static final int DataBaseVersion = 2;
 
 	private static SqliteHelper mInstance;
 
@@ -38,7 +38,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
 		db.execSQL("CREATE TABLE IF NOT EXISTS category(_id INTEGER PRIMARY KEY, parent_id INTEGER, category VARCHAR, alias VARCHAR , order_num INTEGER)");
 
-		db.execSQL("CREATE TABLE IF NOT EXISTS login_user(_id INTEGER PRIMARY KEY, username VARCHAR, pwd VARCHAR)");
+		db.execSQL("CREATE TABLE IF NOT EXISTS login_user(_id INTEGER PRIMARY KEY, username VARCHAR, pwd VARCHAR,role VARCHAR)"); //1管理员用户，2商家用户
 		
 		db.execSQL("CREATE TABLE IF NOT EXISTS start(isStart INTEGER)");
 
@@ -46,5 +46,9 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		if(newVersion==2){
+			db.execSQL("drop table login_user");
+			db.execSQL("CREATE TABLE IF NOT EXISTS login_user(_id INTEGER PRIMARY KEY, username VARCHAR, pwd VARCHAR,role VARCHAR)"); //1管理员用户，2商家用户
+		}
 	}
 }

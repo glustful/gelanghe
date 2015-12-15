@@ -1,10 +1,17 @@
 package com.maybe.mh.eb;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnKeyListener;
@@ -27,22 +34,28 @@ import android.widget.ProgressBar;
 import com.maybe.mh.MyActivity;
 import com.maybe.mh.MyApplication;
 import com.tiandu.mh.R;
+import com.maybe.mh.util.MyHttpPost;
 import com.maybe.mh.util.ShowToast;
 
 
 public class HTML5Activity extends MyActivity {
 	private WebView mWebView;
 	private ProgressBar pb;
-	private String url = "http://www.gelanghe.gov.cn/glh2015/plist.php?alias=products&a=1";
-	
+	//private String url = "http://www.gelanghe.gov.cn/glh2015/plist.php?alias=products&a=1";
+	private String url = "http://www.gelanghe.gov.cn/glh2015/";
+	private ArrayList<String> orders;
 	@Override
 	public void onBackPressed() {
-			System.out.println("url="+mWebView.getUrl());
-			if(mWebView!=null&&!mWebView.getUrl().equalsIgnoreCase("http://www.gelanghe.gov.cn/glh2015/")&&mWebView.canGoBack()){
+			
+			if(mWebView!=null&&mWebView.canGoBack()){
 				
 				mWebView.goBack();
 				
 			}else{
+				if(orders != null){
+					super.onBackPressed();
+					return;
+				}
 				 long currentTime = new Date().getTime();  
 				  
 		            // 如果时间间隔大于2秒, 不处理  
@@ -63,6 +76,19 @@ public class HTML5Activity extends MyActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.eb_html5_layout);
+		String turl = getIntent().getStringExtra("url");
+		if(turl == null || turl.equals("")){
+			turl = url;
+		}
+		url = turl;
+		orders = getIntent().getStringArrayListExtra("data");
+		if(orders!=null){
+			NotificationManager notificationManager = (NotificationManager) this.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+			notificationManager.cancel(2);
+			if(orders.size()>0){
+				postNotice();
+			}
+		}
 		mWebView = (WebView) super.findViewById(R.id.recommend_web_view);
 		pb = (ProgressBar) findViewById(R.id.progressBar);
 		initWebView();
@@ -74,6 +100,21 @@ public class HTML5Activity extends MyActivity {
 	
 	
 
+	private void postNotice() {
+		new Thread(){
+			public void run(){
+				String orderIds = "";
+				for(String str : orders){
+					orderIds += str + ",";
+				}
+				orderIds = orderIds.substring(0, orderIds.length()-1);
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				params.add(new BasicNameValuePair("oid", orderIds));
+				MyHttpPost.doPost("http://www.gelanghe.gov.cn/glh2015/api/getSellerNotice.php", params);
+			}
+		}.start();
+		
+	}
 	private void initWebView() {
 		
 		mWebView.setWebChromeClient(new MyWebChromeClient());

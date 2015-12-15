@@ -88,21 +88,15 @@ public class TeaVideoActivity extends MyActivity {
 		teaVideoGV = (GridView) super.findViewById(R.id.tea_video_gv);
 		
 		
-		new Thread(new Runnable() {
+		/*new Thread(new Runnable() {
 
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				while (true) {
-					if (MyApplication.getMyApplication().isArticleDetailDLOK()) {
-
+			public void run() {*/
+				
 						myHandle.sendEmptyMessage(1);
-						break;
-					}
-
-				}
+			/*	
 			}
-		}).start();
+		}).start();*/
 		
 
 		

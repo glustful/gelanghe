@@ -20,7 +20,7 @@ public class LogInUserDao {
 		values.put("_id", user.getGroup_id());
 		values.put("username", user.getUsername());
 		values.put("pwd", user.getPwd());
-
+		values.put("role", user.getRole());
 		try {
 			long rowid = sqliteDatabase.insert("login_user", null, values);
 			if (rowid != 0) {
@@ -44,6 +44,7 @@ public class LogInUserDao {
 			user.setGroup_id(cursor.getString(cursor.getColumnIndex("_id")));
 			user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
 			user.setPwd(cursor.getString(cursor.getColumnIndex("pwd")));
+			user.setRole(cursor.getString(cursor.getColumnIndex("role")));
 			list.add(user);
 		}
 		cursor.close();

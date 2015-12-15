@@ -68,9 +68,16 @@ public class ArticleDetailDL {
 		}
 
 		int page = 1;
+		int page_limit = 20;
+		try{
+				page_limit = Integer.parseInt(args.get("page_limit"));
+		}catch(Exception e){
+			e.printStackTrace();
+			page_limit = 20;
+		}
 		while (true) {
 			String jsonStr = MyHttpPost.doGet(newUrl, args.get("alias"),
-					String.valueOf(page));
+					String.valueOf(page),String.valueOf(page_limit));
 
 			if (jsonStr.indexOf("article_id") == -1) {
 				if (increatment() == 0) {
@@ -97,7 +104,7 @@ public class ArticleDetailDL {
 					sqliteDatabase.endTransaction();
 					DatabaseManager.getInstance().closeDatabase();
 					// MyApplication.getMyApplication().setArticleDetailDLOK(true);
-					if(list.size()<50){
+					if(list.size()<page_limit){
 						if (increatment() == 0){
 							MyApplication.getMyApplication().setArticleDetailDLOK(true);
 						}

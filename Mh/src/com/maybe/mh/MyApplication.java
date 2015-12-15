@@ -71,6 +71,14 @@ public class MyApplication extends Application {
 	}
 
 	private User loginUser = null;
+	private User sellerUser = null;
+
+	public User getSellerUser() {
+		return sellerUser;
+	}
+	public void setSellerUser(User sellerUser) {
+		this.sellerUser = sellerUser;
+	}
 
 	private boolean newApkDLOK;
 

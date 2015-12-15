@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+     >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#78b651" >
+
+        <ImageButton
+            android:id="@+id/user_login_back_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/home_tab_arrow"
+            android:src="@drawable/icon_back_ontouch" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="商家登录"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名："
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#333333"
+                    android:textSize="16dip" />
+
+                <EditText
+                    android:id="@+id/login_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:background="@drawable/login_text_bg"
+                    android:ems="10"
+                    android:hint="请输入用户名"
+                    android:textSize="16dip" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="密    码："
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#333333"
+                    android:textSize="16dip" />
+
+                <EditText
+                    android:id="@+id/login_user_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:background="@drawable/login_text_bg"
+                    android:ems="10"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword"
+                    android:textSize="16dip" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <Button
+                android:id="@+id/login_but"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
+                android:layout_weight="1"
+                android:padding="10dip"
+                android:text="商家登录"
+                android:background="@drawable/do_work_redbtn"
+                android:textColor="#ffffff"
+                android:textSize="16dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:paddingTop="5dip"
+                android:text="温馨提示："
+                android:textColor="#555555"
+                android:textSize="14dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1、登陆的用户名是商家平台登陆的用户名;2、密码是6-10位字母或者数字"
+                android:textColor="#555555"
+                android:textSize="14dip" />
+        </LinearLayout>
+    </LinearLayout>
+    
+
+</LinearLayout>
+<ProgressBar 
+    android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</FrameLayout>

@@ -99,7 +99,15 @@ public class UserLoginActivity extends MyActivity {
 				finish();
 			}
 		});
-
+		findViewById(R.id.login_seller).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(UserLoginActivity.this, SellerLoginActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
 		loginBut.setOnClickListener(new OnClickListener() {
 
 			@Override

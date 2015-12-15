@@ -20,6 +20,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maybe.mh.pojo.ArticleDetail;
 import com.maybe.mh.pojo.Category;
@@ -66,17 +67,21 @@ public class BasePartyLExpandListActivity extends MyActivity {
 					int listSize = categoryList.size();
 
 					ArticleDetailDao detailDao = new ArticleDetailDao();
-
+					int count = 0;
 					for (int i = 0; i < listSize; i++) {
 
 						dataList = detailDao.getAllArticleDetailByCategoryAndGroupId(categoryList.get(i).getAlias(), groupId);
-
+						if(dataList==null || dataList.size() == 0){
+							count++;
+						}
 						articleGroupList.add(dataList);
 					}
 					DatabaseManager.getInstance().closeDatabase();
+					if(count == articleGroupList.size())
+						articleGroupList.clear();
 					if(articleGroupList.size()==0){
 						myHandle.sendEmptyMessageDelayed(1, 500);
-						
+						//Toast.makeText(getApplicationContext(), "再来", Toast.LENGTH_LONG).show();
 					}
 				}
 				
@@ -113,22 +118,17 @@ public class BasePartyLExpandListActivity extends MyActivity {
 
 		expandLV = (ExpandableListView) super.findViewById(R.id.base_party_elv);
 		
-		
+		/*
 		new Thread(new Runnable() {
 
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				while (true) {
-					if (MyApplication.getMyApplication().isArticleDetailDLOK()) {
-
+			public void run() {*/
+				
 						myHandle.sendEmptyMessage(1);
-						break;
-					}
-
-				}
+						
+/*
 			}
-		}).start();
+		}).start();*/
 
 		
 

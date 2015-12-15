@@ -7,6 +7,7 @@ import com.maybe.mh.sqlite.SqliteHelper;
 import com.tiandu.mh.R;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -63,6 +64,17 @@ public class LoginView extends MyActivity {
 				new DoWorkDao().deleteAll();
 				DatabaseManager.getInstance().closeDatabase();
 				finish();
+			}
+		});
+		
+		findViewById(R.id.user_info_login_but).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(LoginView.this, SellerLoginActivity.class);
+				startActivity(intent);
+				finish();
+				
 			}
 		});
 

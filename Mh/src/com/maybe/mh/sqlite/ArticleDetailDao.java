@@ -189,7 +189,7 @@ public class ArticleDetailDao {
 								new String[] { category, "0", "3", "2:3" });
 			
 		}
-
+		if(cursor != null){
 		while (cursor.moveToNext()) {
 			ArticleDetail articleDetail = new ArticleDetail();
 
@@ -233,6 +233,7 @@ public class ArticleDetailDao {
 			list.add(articleDetail);
 		}
 		cursor.close();
+		}
 		sqliteDatabase.setTransactionSuccessful();
 		sqliteDatabase.endTransaction();
 		return list;
@@ -295,7 +296,7 @@ public class ArticleDetailDao {
 								new String[] { category, "0", "3", "2:3" });
 			}
 		}
-
+		if(cursor != null){
 		while (cursor.moveToNext()) {
 			ArticleDetail articleDetail = new ArticleDetail();
 
@@ -339,6 +340,7 @@ public class ArticleDetailDao {
 			list.add(articleDetail);
 		}
 		cursor.close();
+		}
 		sqliteDatabase.setTransactionSuccessful();
 		sqliteDatabase.endTransaction();
 		return list;
